@@ -32,20 +32,20 @@ class HttpBasicAuthenticator extends AbstractGuardAuthenticator
     /**
      * @var bool
      */
-    private $supportsRememberMe;
+    private $isSupportsRememberMe;
 
     /**
      * @param CredentialCheckerInterface $credentialChecker
-     * @param bool                       $supportsRememberMe
+     * @param bool                       $isSupportsRememberMe
      * @param string                     $realmMessage
      */
     public function __construct(
         CredentialCheckerInterface $credentialChecker,
-        bool $supportsRememberMe,
+        bool $isSupportsRememberMe,
         string $realmMessage
     ) {
         $this->credentialChecker = $credentialChecker;
-        $this->supportsRememberMe = $supportsRememberMe;
+        $this->isSupportsRememberMe = $isSupportsRememberMe;
         $this->realmMessage = $realmMessage;
     }
 
@@ -123,6 +123,6 @@ class HttpBasicAuthenticator extends AbstractGuardAuthenticator
      */
     public function supportsRememberMe()
     {
-        return $this->realmMessage;
+        return $this->isSupportsRememberMe;
     }
 }
