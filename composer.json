@@ -1,0 +1,36 @@
+{
+  "name": "symfony-notes/http-basic-authenticator-bundle",
+  "type": "symfony-bundle",
+  "description": "Symfony Http Basic Authenticator Bundle",
+  "keywords": ["symfony", "bundle", "http basic"],
+  "homepage": "https://github.com/symfony-notes/http-basic-authenticator-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Roman Zhuravel",
+      "email": "zhooravell@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SymfonyNotes\\HttpBasicAuthenticatorBundle\\": ""
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  },
+  "require": {
+    "php": ">=7.0.11",
+    "symfony/framework-bundle": "~3.0",
+    "symfony/security": "^3.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7.15",
+    "phpunit/php-code-coverage": "^4.0.4"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
+  }
+}
