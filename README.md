@@ -4,8 +4,7 @@ This bundle will help you to add `http basic authentication`, with custom creden
 [![SensioLabsInsight][sensiolabs-insight-image]][sensiolabs-insight-link]
 
 [![License][license-image]][license-link]
-
-[![Build Status](build-image)](build-link)
+[![Build Status][build-image]][build-link]
 
 [license-link]: https://github.com/symfony-notes/http-basic-authenticator-bundle/blob/master/LICENSE
 [license-image]: https://img.shields.io/dub/l/vibe-d.svg
