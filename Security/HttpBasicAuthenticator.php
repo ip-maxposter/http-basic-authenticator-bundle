@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use SymfonyNotes\HttpBasicAuthenticatorBundle\Factory\AuthenticationFailure\FailureResponseFactoryInterface;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Email;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Password;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Credentials;
@@ -25,6 +26,11 @@ class HttpBasicAuthenticator extends AbstractGuardAuthenticator
     private $credentialChecker;
 
     /**
+     * @var FailureResponseFactoryInterface
+     */
+    private $failureResponseFactory;
+
+    /**
      * @var string
      */
     private $realmMessage;
@@ -35,16 +41,19 @@ class HttpBasicAuthenticator extends AbstractGuardAuthenticator
     private $isSupportsRememberMe;
 
     /**
-     * @param CredentialCheckerInterface $credentialChecker
-     * @param bool                       $isSupportsRememberMe
-     * @param string                     $realmMessage
+     * @param CredentialCheckerInterface      $credentialChecker
+     * @param FailureResponseFactoryInterface $failureResponseFactory
+     * @param bool                            $isSupportsRememberMe
+     * @param string                          $realmMessage
      */
     public function __construct(
         CredentialCheckerInterface $credentialChecker,
+        FailureResponseFactoryInterface $failureResponseFactory,
         bool $isSupportsRememberMe,
         string $realmMessage
     ) {
         $this->credentialChecker = $credentialChecker;
+        $this->failureResponseFactory = $failureResponseFactory;
         $this->isSupportsRememberMe = $isSupportsRememberMe;
         $this->realmMessage = $realmMessage;
     }
@@ -97,17 +106,7 @@ class HttpBasicAuthenticator extends AbstractGuardAuthenticator
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        $response = new Response(
-            [
-                'message' => 'Authentication fail.',
-                'errors' => [
-                    $exception->getMessage(),
-                ],
-            ],
-            Response::HTTP_FORBIDDEN
-        );
-
-        return $response;
+        return $this->failureResponseFactory->createFromException($exception);
     }
 
     /**

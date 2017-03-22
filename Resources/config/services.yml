@@ -1,0 +1,24 @@
+services:
+    notes.authenticator_failure_response.json:
+        class: SymfonyNotes\HttpBasicAuthenticatorBundle\Factory\AuthenticationFailure\JsonResponseFactory
+
+    notes.authenticator_failure_response.plain:
+        class: SymfonyNotes\HttpBasicAuthenticatorBundle\Factory\AuthenticationFailure\PlainResponseFactory
+
+    notes.authenticator_credential_checker.chain_checker:
+        class: SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\ChainChecker
+
+    notes.authenticator_password_checker:
+        class: SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\PasswordChecker
+        arguments:
+            - '@security.password_encoder'
+        tags:
+            - { name: authenticator.checker }
+
+    notes.http_basic_authenticator:
+        class: SymfonyNotes\HttpBasicAuthenticatorBundle\Security\HttpBasicAuthenticator
+        arguments:
+            - '@notes.authenticator_credential_checker.chain_checker'
+            - '@notes.authenticator_failure_response'
+            - '%notes_authenticator_supports_remember_me%'
+            - '%notes_authenticator_realm_message%'

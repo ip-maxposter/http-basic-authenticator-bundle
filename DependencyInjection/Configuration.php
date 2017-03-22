@@ -24,6 +24,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('realm_message')
                     ->defaultValue('Realm')
                 ->end()
+                ->scalarNode('failure_response')
+                    ->defaultValue('notes.authenticator_failure_response.plain')
+                ->end()
             ->end();
 
         return $builder;

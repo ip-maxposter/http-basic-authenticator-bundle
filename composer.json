@@ -21,11 +21,11 @@
   },
   "require": {
     "php": ">=7.0.11",
-    "symfony/framework-bundle": "~3.0",
+    "symfony/framework-bundle": "^3.2",
     "symfony/security": "^3.2"
   },
   "require-dev": {
-    "phpunit/phpunit": "^5.7.15",
+    "phpunit/phpunit": "^5.7.17",
     "phpunit/php-code-coverage": "^4.0.4"
   },
   "extra": {

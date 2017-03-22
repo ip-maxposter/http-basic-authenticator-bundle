@@ -19,6 +19,8 @@ class Password
      */
     public function __construct(string $password)
     {
+        $password = trim($password);
+
         if (empty($password)) {
             throw new \InvalidArgumentException('Password can\'t be blank.');
         }

@@ -3,7 +3,7 @@
 namespace SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject;
 
 /**
- * Value object for credentional data
+ * Value object for credentials data
  */
 class Credentials
 {
