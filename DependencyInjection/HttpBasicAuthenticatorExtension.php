@@ -2,7 +2,9 @@
 
 namespace SymfonyNotes\HttpBasicAuthenticatorBundle\DependencyInjection;
 
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Email;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Password;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Credentials;
@@ -28,6 +30,9 @@ class HttpBasicAuthenticatorExtension extends ConfigurableExtension
         $container->setAlias('notes.authenticator_failure_response', $mergedConfig['failure_response']);
         $container->setParameter('notes_authenticator_realm_message', $mergedConfig['realm_message']);
         $container->setParameter('notes_authenticator_supports_remember_me', $mergedConfig['supports_remember_me']);
+
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
 
         $this->addClassesToCompile([
             Email::class,

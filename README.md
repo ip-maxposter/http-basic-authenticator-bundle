@@ -27,6 +27,20 @@ public function registerBundles()
     ...
 }
 ```
+
+* Enable the authenticator in `security.yml`
+
+``` yml
+security:
+    ...
+    firewalls:
+        ...
+        default:
+            guard:
+                authenticators:
+                    - notes.http_basic_authenticator
+```
+
 Configuration
 ------------
 Default bundle configuration:
