@@ -35,7 +35,7 @@ class JsonResponseFactoryTest extends \PHPUnit_Framework_TestCase
 
         self::assertInstanceOf(JsonResponse::class, $response);
         self::assertJson($response->getContent());
-        self::assertEquals(json_encode(['message' => 'Authentication fail.', 'errors' => $exceptionMessage]), $response->getContent());
+        self::assertEquals(json_encode(['message' => 'Authentication fail.', 'errors' => [$exceptionMessage]]), $response->getContent());
     }
 
     /**

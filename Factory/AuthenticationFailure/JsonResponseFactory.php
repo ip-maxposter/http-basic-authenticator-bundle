@@ -19,7 +19,9 @@ class JsonResponseFactory implements FailureResponseFactoryInterface
         $response = new JsonResponse(
             [
                 'message' => 'Authentication fail.',
-                'errors' => $exception->getMessage(),
+                'errors' => [
+                    $exception->getMessage(),
+                ],
             ],
             Response::HTTP_FORBIDDEN,
             ['Content-Type' => 'application/vnd.error+json']
