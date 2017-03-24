@@ -42,7 +42,7 @@ security:
 ```
 
 Configuration
-------------
+-------------
 Default bundle configuration:
 
 ``` yml
