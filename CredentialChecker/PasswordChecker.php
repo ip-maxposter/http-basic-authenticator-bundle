@@ -31,10 +31,11 @@ class PasswordChecker implements CredentialCheckerInterface
 
     /**
      * {@inheritdoc}
+     *
+     * TODO: Exception "No encoder has been configured for account..."
      */
     public function check(AdvancedUserInterface $user, Credentials $credentials)
     {
-        // TODO: Exception "No encoder has been configured for account..."
         if (!$this->passwordEncoder->isPasswordValid($user, (string) $credentials->getPassword())) {
             throw new BadCredentialsException('Wrong password.');
         }
