@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace SymfonyNotes\HttpBasicAuthenticatorBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
@@ -12,6 +14,10 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\ChainChecker;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\Security\HttpBasicAuthenticator;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\PasswordChecker;
+use SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\UserLockedChecker;
+use SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\UserEnabledChecker;
+use SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\AccountExpiredChecker;
+use SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\CredentialsExpiredChecker;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\CredentialCheckerInterface;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\Factory\AuthenticationFailure\JsonResponseFactory;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\Factory\AuthenticationFailure\PlainResponseFactory;
@@ -40,9 +46,13 @@ class HttpBasicAuthenticatorExtension extends ConfigurableExtension
             Credentials::class,
             ChainChecker::class,
             PasswordChecker::class,
+            UserLockedChecker::class,
+            UserEnabledChecker::class,
             JsonResponseFactory::class,
             PlainResponseFactory::class,
+            AccountExpiredChecker::class,
             HttpBasicAuthenticator::class,
+            CredentialsExpiredChecker::class,
             CredentialCheckerInterface::class,
             FailureResponseFactoryInterface::class,
         ]);

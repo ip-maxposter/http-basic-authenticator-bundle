@@ -1,8 +1,10 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Credentials;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -30,7 +32,7 @@ class PasswordChecker implements CredentialCheckerInterface
     /**
      * {@inheritdoc}
      */
-    public function check(UserInterface $user, Credentials $credentials)
+    public function check(AdvancedUserInterface $user, Credentials $credentials)
     {
         // TODO: Exception "No encoder has been configured for account..."
         if (!$this->passwordEncoder->isPasswordValid($user, (string) $credentials->getPassword())) {

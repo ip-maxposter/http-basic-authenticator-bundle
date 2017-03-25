@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace SymfonyNotes\HttpBasicAuthenticatorBundle\Security;
 
 use Symfony\Component\HttpFoundation\Request;

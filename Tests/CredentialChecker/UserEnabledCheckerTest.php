@@ -7,25 +7,19 @@ namespace SymfonyNotes\HttpBasicAuthenticatorBundle\Tests\CredentialChecker;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Email;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Password;
-use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Credentials;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\PasswordChecker;
+use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Credentials;
+use SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\UserEnabledChecker;
 
 /**
- * Class PasswordCheckerTest
+ * Class UserEnabledCheckerTest
  */
-class PasswordCheckerTest extends \PHPUnit_Framework_TestCase
+class UserEnabledCheckerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var PasswordChecker
+     * @var UserEnabledChecker
      */
     private $checker;
-
-    /**
-     * @var UserPasswordEncoderInterface|\PHPUnit_Framework_MockObject_MockObject
-     */
-    private $passwordEncoder;
 
     /**
      * @var AdvancedUserInterface|\PHPUnit_Framework_MockObject_MockObject
@@ -42,8 +36,8 @@ class PasswordCheckerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPositive()
     {
-        $this->passwordEncoder->expects(self::once())
-            ->method('isPasswordValid')
+        $this->user->expects(self::once())
+            ->method('isEnabled')
             ->willReturn(true);
 
         $this->checker->check($this->user, $this->credentials);
@@ -55,10 +49,10 @@ class PasswordCheckerTest extends \PHPUnit_Framework_TestCase
     public function testNegative()
     {
         self::expectException(AuthenticationException::class);
-        self::expectExceptionMessage('Wrong password.');
+        self::expectExceptionMessage('Account is disabled.');
 
-        $this->passwordEncoder->expects(self::once())
-            ->method('isPasswordValid')
+        $this->user->expects(self::once())
+            ->method('isEnabled')
             ->willReturn(false);
 
         $this->checker->check($this->user, $this->credentials);
@@ -73,7 +67,6 @@ class PasswordCheckerTest extends \PHPUnit_Framework_TestCase
 
         $this->user = $this->createMock(AdvancedUserInterface::class);
         $this->credentials = new Credentials(new Email('test@test.com'), new Password('test'));
-        $this->passwordEncoder = $this->createMock(UserPasswordEncoderInterface::class);
-        $this->checker = new PasswordChecker($this->passwordEncoder);
+        $this->checker = new UserEnabledChecker();
     }
 }

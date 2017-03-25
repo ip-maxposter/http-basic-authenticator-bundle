@@ -1,8 +1,10 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Credentials;
 
 /**
@@ -30,7 +32,7 @@ class ChainChecker implements CredentialCheckerInterface
     /**
      * {@inheritdoc}
      */
-    public function check(UserInterface $user, Credentials $credentials)
+    public function check(AdvancedUserInterface $user, Credentials $credentials)
     {
         foreach ($this->checkers as $checker) {
             $checker->check($user, $credentials);

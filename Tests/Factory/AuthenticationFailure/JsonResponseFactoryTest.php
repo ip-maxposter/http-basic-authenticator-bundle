@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace SymfonyNotes\HttpBasicAuthenticatorBundle\Tests\Factory\AuthenticationFailure;
 
 use Symfony\Component\HttpFoundation\JsonResponse;

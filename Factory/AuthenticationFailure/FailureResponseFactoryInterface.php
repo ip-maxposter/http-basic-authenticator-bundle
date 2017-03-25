@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace SymfonyNotes\HttpBasicAuthenticatorBundle\Factory\AuthenticationFailure;
 
 use Symfony\Component\HttpFoundation\Response;

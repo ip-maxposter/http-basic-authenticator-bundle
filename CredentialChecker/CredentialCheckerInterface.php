@@ -2,7 +2,7 @@
 
 namespace SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Credentials;
 
@@ -12,10 +12,10 @@ use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Credentials;
 interface CredentialCheckerInterface
 {
     /**
-     * @param UserInterface $user
-     * @param Credentials   $credentials
+     * @param AdvancedUserInterface $user
+     * @param Credentials           $credentials
      *
      * @throws AuthenticationException
      */
-    public function check(UserInterface $user, Credentials $credentials);
+    public function check(AdvancedUserInterface $user, Credentials $credentials);
 }

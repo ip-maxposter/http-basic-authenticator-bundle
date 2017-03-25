@@ -15,6 +15,26 @@ services:
         tags:
             - { name: authenticator.checker }
 
+    notes.authenticator_account_expired_checker:
+        class: SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\AccountExpiredChecker
+        tags:
+            - { name: authenticator.checker }
+
+    notes.authenticator_credentials_expired_checker:
+        class: SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\CredentialsExpiredChecker
+        tags:
+            - { name: authenticator.checker }
+
+    notes.authenticator_user_enabled_checker:
+        class: SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\UserEnabledChecker
+        tags:
+            - { name: authenticator.checker }
+
+    notes.authenticator_user_locked_checker:
+        class: SymfonyNotes\HttpBasicAuthenticatorBundle\CredentialChecker\UserLockedChecker
+        tags:
+            - { name: authenticator.checker }
+
     notes.http_basic_authenticator:
         class: SymfonyNotes\HttpBasicAuthenticatorBundle\Security\HttpBasicAuthenticator
         arguments:

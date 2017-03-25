@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace SymfonyNotes\HttpBasicAuthenticatorBundle\Tests\ValueObject;
 
 use SymfonyNotes\HttpBasicAuthenticatorBundle\ValueObject\Password;
