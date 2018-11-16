@@ -1,5 +1,5 @@
 {
-  "name": "symfony-notes/http-basic-authenticator-bundle",
+  "name": "ip-maxposter/http-basic-authenticator-bundle",
   "type": "symfony-bundle",
   "description": "Symfony Http Basic Authenticator Bundle",
   "keywords": ["symfony", "bundle", "http basic"],
